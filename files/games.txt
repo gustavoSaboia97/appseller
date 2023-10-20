@@ -1,0 +1,2 @@
+1;2;God Of War;Jogo de PS5 God Of War;200.00;76;GAME;Playstation 5;Santa Monica Studio
+2;2;EA Sports FC;Jogo de PS5 EA Sports FC;350.00;100;GAME;Playstation 5;EA Games

@@ -1,0 +1,2 @@
+3;1;Essencialismo;Livro essencialismo;19.99;10;BOOK;Greg McKeown;Sextante;272
+4;1;Harry Potter e a Pedra Filosofal;Livro do Harry;19.99;10;BOOK;JK Rolling;Rocco;202
