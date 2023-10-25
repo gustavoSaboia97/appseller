@@ -1,6 +1,8 @@
 package br.edu.infnet.appSales.model.service;
 
 import br.edu.infnet.appSales.model.domain.Product;
+import br.edu.infnet.appSales.model.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,13 +12,14 @@ import java.util.Map;
 @Service
 public class ProductService {
 
-    private final Map<Integer, Product> productMap = new HashMap<>();
+    @Autowired
+    private ProductRepository productRepository;
 
     public void addProduct(Product product){
-        this.productMap.put(product.getId(), product);
+        this.productRepository.save(product);
     }
 
     public Collection<Product> getProducts(){
-        return this.productMap.values();
+        return (Collection<Product>) this.productRepository.findAll();
     }
 }

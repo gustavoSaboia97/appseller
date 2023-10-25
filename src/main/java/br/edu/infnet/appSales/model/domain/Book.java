@@ -1,10 +1,12 @@
 package br.edu.infnet.appSales.model.domain;
 
-public class Book extends Product {
+import jakarta.persistence.*;
 
+@Entity
+public class Book extends Product {
     private String authorName;
     private String publisherName;
-    private int numberOfPages;
+    private Integer numberOfPages;
 
     Book(BookBuilder builder) {
         super(builder);
@@ -12,6 +14,10 @@ public class Book extends Product {
         this.authorName = builder.authorName;
         this.publisherName = builder.publisherName;
         this.numberOfPages = builder.numberOfPages;
+    }
+
+    public Book() {
+
     }
 
     public String getAuthorName() {
@@ -22,7 +28,7 @@ public class Book extends Product {
         return publisherName;
     }
 
-    public int getNumberOfPages() {
+    public Integer getNumberOfPages() {
         return numberOfPages;
     }
 
@@ -38,7 +44,7 @@ public class Book extends Product {
     public static class BookBuilder extends ProductBuilder<BookBuilder> {
         private String authorName;
         private String publisherName;
-        private int numberOfPages;
+        private Integer numberOfPages;
 
         public BookBuilder setAuthorName(String authorName) {
             this.authorName = authorName;
@@ -50,7 +56,7 @@ public class Book extends Product {
             return this;
         }
 
-        public BookBuilder setNumberOfPages(int numberOfPages) {
+        public BookBuilder setNumberOfPages(Integer numberOfPages) {
             this.numberOfPages = numberOfPages;
             return this;
         }

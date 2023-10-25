@@ -1,7 +1,10 @@
 package br.edu.infnet.appSales.model.domain;
 
-public class Game extends Product {
 
+import jakarta.persistence.*;
+
+@Entity
+public class Game extends Product {
     private String platformName;
     private String studioName;
 
@@ -10,6 +13,10 @@ public class Game extends Product {
 
         this.platformName = builder.platformName;
         this.studioName = builder.studioName;
+    }
+
+    public Game() {
+
     }
 
     public String getPlatformName() {
