@@ -29,7 +29,7 @@ public class SellerLoader implements ApplicationRunner {
             String line = reader.readLine();
             String[] values = line.split(";");
 
-            int sellerId = Integer.parseInt(values[0]);
+            Integer sellerId = Integer.parseInt(values[0]);
 
             Seller seller = new SellerBuilder()
                 .setId(sellerId)
@@ -43,7 +43,5 @@ public class SellerLoader implements ApplicationRunner {
             sellerService.addSeller(seller);
         }
         reader.close();
-
-        sellerService.getSellers().forEach(System.out::println);
     }
 }

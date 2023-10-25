@@ -1,16 +1,21 @@
 package br.edu.infnet.appSales.model.domain;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "TB_SELLER")
 public class Seller {
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String cpf;
     private String name;
     private String email;
     private String nickname;
     private boolean isActive;
+    @Transient
     private List<Product> products;
 
     private Seller(SellerBuilder builder){
@@ -23,7 +28,9 @@ public class Seller {
         this.products = builder.products;
     }
 
-    public int getId() {
+    public Seller() {}
+
+    public Integer getId() {
         return id;
     }
 
@@ -68,7 +75,7 @@ public class Seller {
     }
 
     public static class SellerBuilder {
-        private int id;
+        private Integer id;
         private String cpf;
         private String name;
         private String email;
@@ -77,7 +84,7 @@ public class Seller {
 
         private List<Product> products;
 
-        public SellerBuilder setId(int id) {
+        public SellerBuilder setId(Integer id) {
             this.id = id;
             return this;
         }
