@@ -1,7 +1,5 @@
-<%@ page import="br.edu.infnet.appSales.model.domain.Product" %>
-<%@ page import="br.edu.infnet.appSales.model.domain.ProductType" %>
-<%@ page import="br.edu.infnet.appSales.model.domain.ProductType" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="br.edu.infnet.appSales.model.domain.*" %>
 <%@ page contentType="text/html; charset=US-ASCII" pageEncoding="utf-8"%>
 <!doctype html>
 <html lang="en">
@@ -20,7 +18,9 @@
         <br />
         <br />
 
-        <table class="table">
+        <h3 class="text-center">GAMES</h3>
+
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -28,18 +28,54 @@
                 <th scope="col">DESCRIPTION</th>
                 <th scope="col">PRICE</th>
                 <th scope="col">QUANTITY</th>
-                <th scope="col">TYPE</th>
+                <th scope="col">PLATFORM NAME</th>
+                <th scope="col">STUDIO NAME</th>
             </tr>
             </thead>
             <tbody>
-            <%for (Product product : (Collection<Product>) request.getAttribute("products")) { %>
+            <%for (Game game : (Collection<Game>) request.getAttribute("games")) { %>
                 <tr>
-                    <th scope="row"><%= product.getId() %></th>
-                    <td><%= product.getTitle() %></td>
-                    <td><%= product.getDescription() %></td>
-                    <td><%= product.getPrice() %></td>
-                    <td><%= product.getQuantity() %></td>
-                    <td><%= product.getType() %></td>
+                    <th scope="row"><%= game.getId() %></th>
+                    <td><%= game.getTitle() %></td>
+                    <td><%= game.getDescription() %></td>
+                    <td><%= game.getPrice() %></td>
+                    <td><%= game.getQuantity() %></td>
+                    <td><%= game.getPlatformName() %></td>
+                    <td><%= game.getStudioName() %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+
+        <h3 class="text-center">BOOKS</h3>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">QUANTITY</th>
+                <th scope="col">AUTHOR NAME</th>
+                <th scope="col">PUBLISHER NAME</th>
+                <th scope="col">NUMBER OF PAGES</th>
+            </tr>
+            </thead>
+            <tbody class="table-striped">
+            <%for (Book book : (Collection<Book>) request.getAttribute("books")) { %>
+                <tr>
+                    <th scope="row"><%= book.getId() %></th>
+                    <td><%= book.getTitle() %></td>
+                    <td><%= book.getDescription() %></td>
+                    <td><%= book.getPrice() %></td>
+                    <td><%= book.getQuantity() %></td>
+                    <td><%= book.getAuthorName() %></td>
+                    <td><%= book.getPublisherName() %></td>
+                    <td><%= book.getNumberOfPages() %></td>
                 </tr>
             <% } %>
             </tbody>
