@@ -1,14 +1,20 @@
 package br.edu.infnet.appSales.model.domain;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "TB_PRODUCT")
 public class Product {
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String title;
     private String description;
     private BigDecimal price;
-    private int quantity;
+    private Integer quantity;
+
+    private ProductType type;
 
     Product(ProductBuilder<?> builder){
         this.id = builder.id;
@@ -16,9 +22,14 @@ public class Product {
         this.description = builder.description;
         this.price = builder.price;
         this.quantity = builder.quantity;
+        this.type = builder.type;
     }
 
-    public int getId() {
+    public Product() {
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -34,8 +45,12 @@ public class Product {
         return price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
+    }
+
+    public ProductType getType() {
+        return type;
     }
 
     @Override
@@ -44,17 +59,19 @@ public class Product {
            "Title: " + this.getTitle() + "\n" +
            "Description: " + this.getDescription() + "\n" +
            "Price: " + this.getPrice() + "\n" +
-           "Quantity: " + this.getQuantity() + "\n";
+           "Quantity: " + this.getQuantity() + "\n" +
+           "Type: " + this.getType() + "\n";
     }
 
     abstract static class ProductBuilder<T extends ProductBuilder> {
-        private int id;
+        private Integer id;
         private String title;
         private String description;
         private BigDecimal price;
-        private int quantity;
+        private Integer quantity;
+        private ProductType type;
 
-        public T setId(int id){
+        public T setId(Integer id){
             this.id = id;
             return self();
         }
@@ -74,8 +91,13 @@ public class Product {
             return self();
         }
 
-        public T setQuantity(int quantity){
+        public T setQuantity(Integer quantity){
             this.quantity = quantity;
+            return self();
+        }
+
+        public T setType(ProductType type){
+            this.type = type;
             return self();
         }
 

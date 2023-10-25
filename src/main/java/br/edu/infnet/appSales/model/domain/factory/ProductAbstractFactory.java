@@ -23,6 +23,7 @@ public class ProductAbstractFactory {
             .setDescription(values[3])
             .setPrice(new BigDecimal(values[4]))
             .setQuantity(Integer.parseInt(values[5]))
+            .setType(ProductType.valueOf(values[6]))
             .setAuthorName(values[7])
             .setPublisherName(values[8])
             .setNumberOfPages(Integer.parseInt(values[9]))
@@ -36,6 +37,7 @@ public class ProductAbstractFactory {
             .setDescription(values[3])
             .setPrice(new BigDecimal(values[4]))
             .setQuantity(Integer.parseInt(values[5]))
+            .setType(ProductType.valueOf(values[6]))
             .setPlatformName(values[7])
             .setStudioName(values[8])
             .build();
