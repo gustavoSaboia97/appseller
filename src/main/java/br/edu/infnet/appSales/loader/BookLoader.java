@@ -38,7 +38,5 @@ public class BookLoader implements ApplicationRunner {
         }
 
         reader.close();
-
-        this.bookService.getBooks().forEach(System.out::println);
     }
 }

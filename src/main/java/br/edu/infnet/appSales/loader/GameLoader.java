@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-@Order(3)
+@Order(4)
 @Component
 public class GameLoader implements ApplicationRunner {
 
@@ -37,7 +37,5 @@ public class GameLoader implements ApplicationRunner {
         }
 
         reader.close();
-
-        this.gameService.getGames().forEach(System.out::println);
     }
 }

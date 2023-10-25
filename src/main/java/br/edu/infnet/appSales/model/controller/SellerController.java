@@ -1,7 +1,6 @@
 package br.edu.infnet.appSales.model.controller;
 
 import br.edu.infnet.appSales.model.domain.*;
-import br.edu.infnet.appSales.model.service.ProductService;
 import br.edu.infnet.appSales.model.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

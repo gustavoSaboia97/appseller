@@ -12,7 +12,6 @@ public class ProductAbstractFactory {
         return switch (productType){
             case ProductType.BOOK -> createBookWithValues(values);
             case ProductType.GAME -> createGameWithValues(values);
-            default -> throw new Exception("Unsupported Product");
         };
     }
 
