@@ -38,7 +38,5 @@ public class ProductLoader implements ApplicationRunner {
         }
 
         reader.close();
-
-        this.productService.getProducts().forEach(System.out::println);
     }
 }
