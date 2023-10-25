@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql
+    container_name: app-sales-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - app-network
+    ports:
+      - "3306:3306"
+    restart: always
+
+  app:
+    container_name: sales-app
+    hostname: app
+    build:
+      context: ./
+    environment:
+      - DB_HOST=app-sales-mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+    ports:
+      - "8080:8080"
+    command: "java -jar app-sales.jar"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
