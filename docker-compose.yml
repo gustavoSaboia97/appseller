@@ -23,7 +23,7 @@ services:
       - DB_PASSWORD=root
     ports:
       - "8080:8080"
-    command: "java -jar app-sales.jar"
+    command: "java -jar target/app-sales.jar"
     depends_on:
       - mysql
     networks:
