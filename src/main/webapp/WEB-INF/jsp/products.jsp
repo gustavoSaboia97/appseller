@@ -17,6 +17,9 @@
     <div class="container">
         <h1 class="text-center">Products</h1>
 
+        <br />
+        <br />
+
         <table class="table">
             <thead>
             <tr>
@@ -25,6 +28,7 @@
                 <th scope="col">DESCRIPTION</th>
                 <th scope="col">PRICE</th>
                 <th scope="col">QUANTITY</th>
+                <th scope="col">TYPE</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +39,7 @@
                     <td><%= product.getDescription() %></td>
                     <td><%= product.getPrice() %></td>
                     <td><%= product.getQuantity() %></td>
+                    <td><%= product.getType() %></td>
                 </tr>
             <% } %>
             </tbody>

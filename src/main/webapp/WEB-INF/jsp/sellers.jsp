@@ -15,6 +15,9 @@
     <div class="container">
         <h1 class="text-center">Sellers</h1>
 
+        <br />
+        <br />
+
         <table class="table">
             <thead>
             <tr>
