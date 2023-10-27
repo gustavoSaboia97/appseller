@@ -1,22 +1,23 @@
 package br.edu.infnet.appSales.model.service;
 
 import br.edu.infnet.appSales.model.domain.Book;
+import br.edu.infnet.appSales.model.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class BookService {
 
-    private final Map<Integer, Book> bookMap = new HashMap<>();
+    @Autowired
+    private BookRepository bookRepository;
 
-    public void addBook(Book Book){
-        this.bookMap.put(Book.getId(), Book);
+    public void addBook(Book book){
+        this.bookRepository.save(book);
     }
 
     public Collection<Book> getBooks(){
-        return this.bookMap.values();
+        return (Collection<Book>) this.bookRepository.findAll();
     }
 }
