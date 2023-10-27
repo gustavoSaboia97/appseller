@@ -12,11 +12,12 @@ Caso queira executar apenas a base de dados e rodar de forma externa a aplicaç�
 
 Os dados da base de dados são carregados a partir dos arquivos no diretorio `./files` .
 
-## Visualização dos dados
+## Exibição dos dados
 
 Os dados podem ser observados no navegador: http://localhost:8080/
 
 Possíveis rotas:
 
-- /products
-- /sellers
+- / -> Contém um link para venndedores e produtos
+- /products -> Contém os dados de produtos
+- /sellers -> Contém os dados de vendedores
