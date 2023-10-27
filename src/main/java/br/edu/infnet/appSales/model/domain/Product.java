@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "TB_PRODUCT")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +14,10 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Integer quantity;
-
     private ProductType type;
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
 
     Product(ProductBuilder<?> builder){
         this.id = builder.id;
@@ -23,6 +26,7 @@ public class Product {
         this.price = builder.price;
         this.quantity = builder.quantity;
         this.type = builder.type;
+        this.seller = builder.seller;
     }
 
     public Product() {
@@ -53,6 +57,10 @@ public class Product {
         return type;
     }
 
+    public Seller getSeller() {
+        return seller;
+    }
+
     @Override
     public String toString() {
         return "[PRODUCT]\n" +
@@ -70,6 +78,7 @@ public class Product {
         private BigDecimal price;
         private Integer quantity;
         private ProductType type;
+        private Seller seller;
 
         public T setId(Integer id){
             this.id = id;
@@ -98,6 +107,11 @@ public class Product {
 
         public T setType(ProductType type){
             this.type = type;
+            return self();
+        }
+
+        public T setSeller(Seller seller){
+            this.seller = seller;
             return self();
         }
 

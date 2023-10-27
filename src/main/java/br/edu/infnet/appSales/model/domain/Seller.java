@@ -15,7 +15,8 @@ public class Seller {
     private String email;
     private String nickname;
     private boolean isActive;
-    @Transient
+    @OneToMany
+    @JoinColumn(name = "seller_id")
     private List<Product> products;
 
     private Seller(SellerBuilder builder){
@@ -54,11 +55,8 @@ public class Seller {
         return isActive;
     }
 
-    public void addProduct(Product product){
-        products.add(product);
-    }
 
-    public List<Product> products(){
+    public List<Product> getProducts(){
         return products;
     }
 
