@@ -30,6 +30,7 @@
                 <th scope="col">QUANTITY</th>
                 <th scope="col">PLATFORM NAME</th>
                 <th scope="col">STUDIO NAME</th>
+                <th scope="col">SELLER</th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                     <td><%= game.getQuantity() %></td>
                     <td><%= game.getPlatformName() %></td>
                     <td><%= game.getStudioName() %></td>
+                    <td><%= game.getSeller().getName() %></td>
                 </tr>
             <% } %>
             </tbody>
@@ -63,6 +65,7 @@
                 <th scope="col">AUTHOR NAME</th>
                 <th scope="col">PUBLISHER NAME</th>
                 <th scope="col">NUMBER OF PAGES</th>
+                <th scope="col">SELLER</th>
             </tr>
             </thead>
             <tbody class="table-striped">
@@ -76,6 +79,7 @@
                     <td><%= book.getAuthorName() %></td>
                     <td><%= book.getPublisherName() %></td>
                     <td><%= book.getNumberOfPages() %></td>
+                    <td><%= book.getSeller().getName() %></td>
                 </tr>
             <% } %>
             </tbody>

@@ -27,6 +27,7 @@
                 <th scope="col">EMAIL</th>
                 <th scope="col">NICKNAME</th>
                 <th scope="col">IS ACTIVE</th>
+                <th scope="col">QUANTITY OF PRODUCTS</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                         <td><%= seller.getEmail() %></td>
                         <td><%= seller.getNickname() %></td>
                         <td><%= seller.isActive() %></td>
+                        <td><%= seller.getProducts().size() %></td>
                     </tr>
                 <% } %>
             </tbody>
