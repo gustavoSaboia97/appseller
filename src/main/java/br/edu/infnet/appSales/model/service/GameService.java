@@ -20,4 +20,8 @@ public class GameService {
     public Collection<Game> getGames(){
         return (Collection<Game>) this.gameRepository.findAll();
     }
+
+    public Long getTotal() {
+        return gameRepository.count();
+    }
 }

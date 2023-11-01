@@ -20,4 +20,8 @@ public class SellerService {
     public Collection<Seller> getSellers(){
         return (Collection<Seller>) sellerRepository.findAll();
     }
+
+    public Long getTotal() {
+        return sellerRepository.count();
+    }
 }

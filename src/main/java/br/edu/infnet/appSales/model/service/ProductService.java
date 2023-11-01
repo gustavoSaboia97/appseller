@@ -21,4 +21,8 @@ public class ProductService {
     public Collection<Product> getProducts(){
         return (Collection<Product>) this.productRepository.findAll();
     }
+
+    public Long getTotal() {
+        return productRepository.count();
+    }
 }

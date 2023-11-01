@@ -20,4 +20,8 @@ public class BookService {
     public Collection<Book> getBooks(){
         return (Collection<Book>) this.bookRepository.findAll();
     }
+
+    public Long getTotal() {
+        return bookRepository.count();
+    }
 }
