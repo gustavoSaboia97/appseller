@@ -13,6 +13,8 @@
 </head>
 <body>
     <div class="container">
+        <%@include file="./header.jsp" %>
+
         <h1 class="text-center">Sellers</h1>
 
         <br />
