@@ -5,6 +5,7 @@ import br.edu.infnet.appSales.model.domain.Product;
 import br.edu.infnet.appSales.model.domain.ProductType;
 import br.edu.infnet.appSales.model.domain.factory.ProductAbstractFactory;
 import br.edu.infnet.appSales.model.service.BookService;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,7 +35,13 @@ public class BookLoader implements ApplicationRunner {
             ProductType productType = ProductType.valueOf(values[6]);
 
             Book book = (Book) factory.createProductWithTypeAndValues(productType, values);
-            this.bookService.addBook(book);
+
+            try {
+                this.bookService.addBook(book);
+            }
+            catch (ConstraintViolationException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
 
         reader.close();

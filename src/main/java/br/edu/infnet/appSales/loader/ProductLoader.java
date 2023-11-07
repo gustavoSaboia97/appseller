@@ -4,6 +4,7 @@ import br.edu.infnet.appSales.model.service.ProductService;
 import br.edu.infnet.appSales.model.domain.Product;
 import br.edu.infnet.appSales.model.domain.ProductType;
 import br.edu.infnet.appSales.model.domain.factory.ProductAbstractFactory;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,7 +35,12 @@ public class ProductLoader implements ApplicationRunner {
 
             Product product = factory.createProductWithTypeAndValues(productType, values);
 
-            this.productService.addProduct(product);
+            try {
+                this.productService.addProduct(product);
+            }
+            catch (ConstraintViolationException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
 
         reader.close();

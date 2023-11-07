@@ -3,6 +3,7 @@ package br.edu.infnet.appSales.loader;
 import br.edu.infnet.appSales.model.service.SellerService;
 import br.edu.infnet.appSales.model.domain.Seller;
 import br.edu.infnet.appSales.model.domain.Seller.SellerBuilder;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -40,7 +41,12 @@ public class SellerLoader implements ApplicationRunner {
                 .setProducts()
                 .build();
 
-            sellerService.addSeller(seller);
+            try {
+                sellerService.addSeller(seller);
+            }
+            catch (ConstraintViolationException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
         reader.close();
     }

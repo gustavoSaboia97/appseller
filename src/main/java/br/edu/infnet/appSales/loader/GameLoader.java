@@ -4,6 +4,7 @@ import br.edu.infnet.appSales.model.domain.Game;
 import br.edu.infnet.appSales.model.domain.ProductType;
 import br.edu.infnet.appSales.model.domain.factory.ProductAbstractFactory;
 import br.edu.infnet.appSales.model.service.GameService;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -33,7 +34,13 @@ public class GameLoader implements ApplicationRunner {
             ProductType productType = ProductType.valueOf(values[6]);
 
             Game game = (Game) factory.createProductWithTypeAndValues(productType, values);
-            this.gameService.addGame(game);
+
+            try {
+                this.gameService.addGame(game);
+            }
+            catch (ConstraintViolationException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
 
         reader.close();
