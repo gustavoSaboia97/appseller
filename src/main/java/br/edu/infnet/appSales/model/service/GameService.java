@@ -13,15 +13,19 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public void addGame(Game game){
+    public void add(Game game){
         this.gameRepository.save(game);
     }
 
-    public Collection<Game> getGames(){
+    public Collection<Game> getAll(){
         return (Collection<Game>) this.gameRepository.findAll();
     }
 
     public Long getTotal() {
         return gameRepository.count();
+    }
+
+    public void delete(Integer gameId){
+        gameRepository.deleteById(gameId);
     }
 }

@@ -13,15 +13,19 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public void addBook(Book book){
+    public void add(Book book){
         this.bookRepository.save(book);
     }
 
-    public Collection<Book> getBooks(){
+    public Collection<Book> getAll(){
         return (Collection<Book>) this.bookRepository.findAll();
     }
 
     public Long getTotal() {
         return bookRepository.count();
+    }
+
+    public void delete(Integer bookId){
+        bookRepository.deleteById(bookId);
     }
 }

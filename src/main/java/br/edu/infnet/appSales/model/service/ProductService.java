@@ -14,15 +14,19 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void addProduct(Product product){
+    public void add(Product product){
         this.productRepository.save(product);
     }
 
-    public Collection<Product> getProducts(){
+    public Collection<Product> getAll(){
         return (Collection<Product>) this.productRepository.findAll();
     }
 
     public Long getTotal() {
         return productRepository.count();
+    }
+
+    public void delete(Integer productId) {
+        productRepository.deleteById(productId);
     }
 }

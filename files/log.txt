@@ -1,0 +1,5 @@
+Nov 07, 2023 8:44:23 PM br.edu.infnet.appSales.config.FileLogger logException
+SEVERE: Could not add the seller. err=Validation failed for classes [br.edu.infnet.appSales.model.domain.Seller] during persist time for groups [jakarta.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage='must match "\d{3}\.\d{3}\.\d{3}-\d{2}"', propertyPath=cpf, rootBeanClass=class br.edu.infnet.appSales.model.domain.Seller, messageTemplate='{jakarta.validation.constraints.Pattern.message}'}
+]

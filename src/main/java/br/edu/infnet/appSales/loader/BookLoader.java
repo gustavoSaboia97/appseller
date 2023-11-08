@@ -1,11 +1,11 @@
 package br.edu.infnet.appSales.loader;
 
 import br.edu.infnet.appSales.model.domain.Book;
-import br.edu.infnet.appSales.model.domain.Product;
 import br.edu.infnet.appSales.model.domain.ProductType;
 import br.edu.infnet.appSales.model.domain.factory.ProductAbstractFactory;
 import br.edu.infnet.appSales.model.service.BookService;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+@Slf4j
 @Order(3)
 @Component
 public class BookLoader implements ApplicationRunner {
@@ -37,10 +38,10 @@ public class BookLoader implements ApplicationRunner {
             Book book = (Book) factory.createProductWithTypeAndValues(productType, values);
 
             try {
-                this.bookService.addBook(book);
+                this.bookService.add(book);
             }
             catch (ConstraintViolationException exception) {
-                System.out.println(exception.getMessage());
+                log.error("Could not add the book. err={}", exception.getMessage());
             }
         }
 

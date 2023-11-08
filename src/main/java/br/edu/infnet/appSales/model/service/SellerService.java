@@ -13,15 +13,19 @@ public class SellerService {
     @Autowired
     private SellerRepository sellerRepository;
 
-    public void addSeller(Seller seller){
+    public void add(Seller seller){
         sellerRepository.save(seller);
     }
 
-    public Collection<Seller> getSellers(){
+    public Collection<Seller> getAll(){
         return (Collection<Seller>) sellerRepository.findAll();
     }
 
     public Long getTotal() {
         return sellerRepository.count();
+    }
+
+    public void delete(Integer id){
+        sellerRepository.deleteById(id);
     }
 }

@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 public class ProductAbstractFactory {
     public Product createProductWithTypeAndValues(ProductType productType, String[] values) throws Exception {
-        Seller seller = new Seller.SellerBuilder()
-            .setId(Integer.parseInt(values[1]))
+        Seller seller = Seller.builder()
+            .id(Integer.parseInt(values[1]))
             .build();
 
         return switch (productType){
@@ -17,31 +17,31 @@ public class ProductAbstractFactory {
     }
 
     public Product createBookWithValuesAndSeller(String[] values, Seller seller){
-        return new Book.BookBuilder()
-            .setId(Integer.parseInt(values[0]))
-            .setTitle(values[2])
-            .setDescription(values[3])
-            .setPrice(new BigDecimal(values[4]))
-            .setQuantity(Integer.parseInt(values[5]))
-            .setType(ProductType.valueOf(values[6]))
-            .setSeller(seller)
-            .setAuthorName(values[7])
-            .setPublisherName(values[8])
-            .setNumberOfPages(Integer.parseInt(values[9]))
+        return Book.builder()
+            .id(Integer.parseInt(values[0]))
+            .title(values[2])
+            .description(values[3])
+            .price(new BigDecimal(values[4]))
+            .quantity(Integer.parseInt(values[5]))
+            .type(ProductType.valueOf(values[6]))
+            .seller(seller)
+            .authorName(values[7])
+            .publisherName(values[8])
+            .numberOfPages(Integer.parseInt(values[9]))
             .build();
     }
 
     public Product createGameWithValues(String[] values, Seller seller){
-        return new Game.GameBuilder()
-            .setId(Integer.parseInt(values[0]))
-            .setTitle(values[2])
-            .setDescription(values[3])
-            .setPrice(new BigDecimal(values[4]))
-            .setQuantity(Integer.parseInt(values[5]))
-            .setType(ProductType.valueOf(values[6]))
-            .setSeller(seller)
-            .setPlatformName(values[7])
-            .setStudioName(values[8])
+        return Game.builder()
+            .id(Integer.parseInt(values[0]))
+            .title(values[2])
+            .description(values[3])
+            .price(new BigDecimal(values[4]))
+            .quantity(Integer.parseInt(values[5]))
+            .type(ProductType.valueOf(values[6]))
+            .seller(seller)
+            .platformName(values[7])
+            .studioName(values[8])
             .build();
     }
 }

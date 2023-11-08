@@ -2,8 +2,8 @@ package br.edu.infnet.appSales.loader;
 
 import br.edu.infnet.appSales.model.service.SellerService;
 import br.edu.infnet.appSales.model.domain.Seller;
-import br.edu.infnet.appSales.model.domain.Seller.SellerBuilder;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -12,8 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
-
+@Slf4j
 @Order(1)
 @Component
 public class SellerLoader implements ApplicationRunner {
@@ -32,20 +33,21 @@ public class SellerLoader implements ApplicationRunner {
 
             Integer sellerId = Integer.parseInt(values[0]);
 
-            Seller seller = new SellerBuilder()
-                .setId(sellerId)
-                .setName(values[1])
-                .setCpf(values[2]).setEmail(values[3])
-                .setNickname(values[4])
-                .setActive(Boolean.parseBoolean(values[5]))
-                .setProducts()
+            Seller seller = Seller.builder()
+                .id(sellerId)
+                .name(values[1])
+                .cpf(values[2])
+                .email(values[3])
+                .nickname(values[4])
+                .isActive(Boolean.parseBoolean(values[5]))
+                .products(new ArrayList<>())
                 .build();
 
             try {
-                sellerService.addSeller(seller);
+                sellerService.add(seller);
             }
             catch (ConstraintViolationException exception) {
-                System.out.println(exception.getMessage());
+                log.error("Could not add the seller. err={}", exception.getMessage());
             }
         }
         reader.close();

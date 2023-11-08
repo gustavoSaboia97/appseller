@@ -5,10 +5,10 @@
                 <a class="nav-link active" href="./index">Sales APP</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./sellers">Sellers</a>
+                <a class="nav-link" href="./seller">Seller</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./products">Produtos</a>
+                <a class="nav-link" href="./product">Product</a>
             </li>
         </ul>
     </div>

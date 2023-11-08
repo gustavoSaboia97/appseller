@@ -4,6 +4,9 @@ import br.edu.infnet.appSales.model.domain.*;
 import br.edu.infnet.appSales.model.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,11 +19,16 @@ public class SellerController {
     @Autowired
     private SellerService sellerService;
 
-    @RequestMapping(value = "/sellers")
+    @RequestMapping(value = "/seller")
     public ModelAndView showSellers() {
-        ModelAndView sellersMV = new ModelAndView("sellers");
-        Collection<Seller> sellers = sellerService.getSellers();
-        sellersMV.addObject("sellers", sellers);
+        ModelAndView sellersMV = new ModelAndView("seller");
+        Collection<Seller> sellers = sellerService.getAll();
+        sellersMV.addObject("seller", sellers);
         return sellersMV;
+    }
+
+    @DeleteMapping(value = "/seller/{id}")
+    public void delete(@PathVariable Integer id){
+        sellerService.delete(id);
     }
 }
