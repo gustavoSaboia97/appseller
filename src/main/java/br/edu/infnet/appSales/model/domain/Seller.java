@@ -30,7 +30,12 @@ public class Seller {
     private String nickname;
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private boolean isActive;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "seller_id")
     private List<Product> products;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

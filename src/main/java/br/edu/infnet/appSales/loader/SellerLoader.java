@@ -1,5 +1,6 @@
 package br.edu.infnet.appSales.loader;
 
+import br.edu.infnet.appSales.model.domain.Address;
 import br.edu.infnet.appSales.model.service.SellerService;
 import br.edu.infnet.appSales.model.domain.Seller;
 import jakarta.validation.ConstraintViolationException;
@@ -33,6 +34,10 @@ public class SellerLoader implements ApplicationRunner {
 
             Integer sellerId = Integer.parseInt(values[0]);
 
+            Address address = Address.builder()
+                .zipCode(values[6])
+                .build();
+
             Seller seller = Seller.builder()
                 .id(sellerId)
                 .name(values[1])
@@ -41,6 +46,7 @@ public class SellerLoader implements ApplicationRunner {
                 .nickname(values[4])
                 .isActive(Boolean.parseBoolean(values[5]))
                 .products(new ArrayList<>())
+                .address(address)
                 .build();
 
             try {
