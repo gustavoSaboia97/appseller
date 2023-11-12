@@ -23,11 +23,11 @@ public class SellerController {
     public ModelAndView showSellers() {
         ModelAndView sellersMV = new ModelAndView("seller");
         Collection<Seller> sellers = sellerService.getAll();
-        sellersMV.addObject("seller", sellers);
+        sellersMV.addObject("sellers", sellers);
         return sellersMV;
     }
 
-    @DeleteMapping(value = "/seller/{id}")
+    @DeleteMapping(value = "/api/seller/{id}")
     public void delete(@PathVariable Integer id){
         sellerService.delete(id);
     }
