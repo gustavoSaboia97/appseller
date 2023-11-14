@@ -3,17 +3,14 @@ package br.edu.infnet.appSales.model.controller;
 import br.edu.infnet.appSales.model.domain.*;
 import br.edu.infnet.appSales.model.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
 
-@Controller
+@RestController
 public class SellerController {
 
     @Autowired
@@ -25,6 +22,21 @@ public class SellerController {
         Collection<Seller> sellers = sellerService.getAll();
         sellersMV.addObject("sellers", sellers);
         return sellersMV;
+    }
+
+    @GetMapping(value = "/api/seller")
+    public Collection<Seller> getSellers() {
+        return sellerService.getAll();
+    }
+
+    @GetMapping(value = "/api/seller/{id}")
+    public Seller getSellerByCpf(@PathVariable Integer id) {
+        return sellerService.getById(id);
+    }
+
+    @GetMapping(value = "/api/seller/cpf")
+    public Seller getSellerByCpf(@Param(value = "cpf") String cpf) {
+        return sellerService.getByCpf(cpf);
     }
 
     @DeleteMapping(value = "/api/seller/{id}")

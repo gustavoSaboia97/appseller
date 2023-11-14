@@ -1,5 +1,6 @@
 package br.edu.infnet.appSales.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -33,6 +34,7 @@ public class Seller {
 
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "seller_id")
+    @JsonIgnore
     private List<Product> products;
 
     @ManyToOne
