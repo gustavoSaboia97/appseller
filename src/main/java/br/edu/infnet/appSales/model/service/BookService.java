@@ -3,6 +3,7 @@ package br.edu.infnet.appSales.model.service;
 import br.edu.infnet.appSales.model.domain.Book;
 import br.edu.infnet.appSales.model.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -18,7 +19,7 @@ public class BookService {
     }
 
     public Collection<Book> getAll(){
-        return (Collection<Book>) this.bookRepository.findAll();
+        return (Collection<Book>) this.bookRepository.findAll(Sort.by(Sort.Direction.ASC, "publisherName"));
     }
 
     public Long getTotal() {

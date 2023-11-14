@@ -1,5 +1,6 @@
 package br.edu.infnet.appSales.model.domain;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -34,5 +35,8 @@ public class Product {
     private ProductType type;
     @ManyToOne
     @JoinColumn(name = "seller_id")
+    @JsonProperty("sellerId")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Seller seller;
 }
