@@ -10,7 +10,7 @@
 </head>
 <%@include file="./style.jsp" %>
 <body>
-    <butto class="container">
+    <div class="container">
         <%@include file="./header.jsp" %>
 
         <h1 class="text-center">Products</h1>
