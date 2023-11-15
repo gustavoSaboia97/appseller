@@ -14,7 +14,7 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public void add(Game game){
+    public void upsert(Game game){
         this.gameRepository.save(game);
     }
 

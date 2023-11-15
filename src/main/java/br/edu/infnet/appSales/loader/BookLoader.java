@@ -38,7 +38,7 @@ public class BookLoader implements ApplicationRunner {
             Book book = (Book) factory.createProductWithTypeAndValues(productType, values);
 
             try {
-                this.bookService.add(book);
+                this.bookService.upsert(book);
             }
             catch (ConstraintViolationException exception) {
                 log.error("Could not add the book. err={}", exception.getMessage());

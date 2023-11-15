@@ -38,7 +38,7 @@ public class GameLoader implements ApplicationRunner {
             Game game = (Game) factory.createProductWithTypeAndValues(productType, values);
 
             try {
-                this.gameService.add(game);
+                this.gameService.upsert(game);
             }
             catch (ConstraintViolationException exception) {
                 log.error("Could not add the game. err={}", exception.getMessage());

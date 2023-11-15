@@ -14,7 +14,7 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public void add(Book book){
+    public void upsert(Book book){
         this.bookRepository.save(book);
     }
 
