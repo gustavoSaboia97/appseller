@@ -24,6 +24,17 @@ public class SellerController {
         return sellersMV;
     }
 
+    @PostMapping(value = "/api/seller")
+    public Seller createSeller(@RequestBody Seller seller) {
+        return sellerService.createSeller(seller);
+    }
+
+    @PutMapping(value = "/api/seller/{id}")
+    public Seller updateSeller(@PathVariable Integer id, @RequestBody Seller seller) {
+        seller.setId(id);
+        return sellerService.updateSeller(seller);
+    }
+
     @GetMapping(value = "/api/seller")
     public Collection<Seller> getSellers() {
         return sellerService.getAll();
