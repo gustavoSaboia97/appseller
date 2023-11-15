@@ -5,7 +5,6 @@ import br.edu.infnet.appSales.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
@@ -16,29 +15,31 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/product")
-    public ModelAndView showProducts() {
-        ModelAndView productsMV = new ModelAndView("product");
-        Collection<Product> products = productService.getAll();
+    @PostMapping(value = "/api/seller/{sellerId}/product")
+    public Product create(@PathVariable Integer sellerId, @RequestBody Product product) {
+        Seller seller = Seller.builder()
+                .id(sellerId)
+                .build();
 
-        Collection<Game> games = products.stream()
-                .filter(product -> product.getType() == ProductType.GAME)
-                .map(product -> (Game) product)
-                .toList();
+        product.setSeller(seller);
 
-        Collection<Book> books = products.stream()
-                .filter(product -> product.getType() == ProductType.BOOK)
-                .map(product -> (Book) product)
-                .toList();
+        return this.productService.create(product);
+    }
 
-        productsMV.addObject("games", games);
-        productsMV.addObject("books", books);
+    @PutMapping(value = "/api/seller/{sellerId}/product/{id}")
+    public Product update(@PathVariable Integer sellerId, @PathVariable Integer id, @RequestBody Product product) {
+        Seller seller = Seller.builder()
+                .id(sellerId)
+                .build();
 
-        return productsMV;
+        product.setId(id);
+        product.setSeller(seller);
+
+        return this.productService.create(product);
     }
 
     @GetMapping(value = "/api/product")
-    public Collection<Product> getSellerByCpf(@Param(value = "sellerId") Integer sellerId) {
+    public Collection<Product> getAll(@Param(value = "sellerId") Integer sellerId) {
         if (sellerId != null){
             return productService.getBySellerId(sellerId);
         }

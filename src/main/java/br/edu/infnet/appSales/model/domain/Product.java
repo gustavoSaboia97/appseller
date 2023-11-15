@@ -34,9 +34,8 @@ public class Product {
     private Integer quantity;
     private ProductType type;
     @ManyToOne
-    @JoinColumn(name = "seller_id")
+    @JoinColumn(name = "seller_id", nullable = false)
     @JsonProperty("sellerId")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Seller seller;
 }
