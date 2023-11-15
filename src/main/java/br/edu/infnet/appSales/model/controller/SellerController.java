@@ -16,37 +16,29 @@ public class SellerController {
     @Autowired
     private SellerService sellerService;
 
-    @RequestMapping(value = "/seller")
-    public ModelAndView showSellers() {
-        ModelAndView sellersMV = new ModelAndView("seller");
-        Collection<Seller> sellers = sellerService.getAll();
-        sellersMV.addObject("sellers", sellers);
-        return sellersMV;
-    }
-
     @PostMapping(value = "/api/seller")
-    public Seller createSeller(@RequestBody Seller seller) {
-        return sellerService.createSeller(seller);
+    public Seller create(@RequestBody Seller seller) {
+        return sellerService.create(seller);
     }
 
     @PutMapping(value = "/api/seller/{id}")
-    public Seller updateSeller(@PathVariable Integer id, @RequestBody Seller seller) {
+    public Seller update(@PathVariable Integer id, @RequestBody Seller seller) {
         seller.setId(id);
-        return sellerService.updateSeller(seller);
+        return sellerService.update(seller);
     }
 
     @GetMapping(value = "/api/seller")
-    public Collection<Seller> getSellers() {
+    public Collection<Seller> getAll() {
         return sellerService.getAll();
     }
 
     @GetMapping(value = "/api/seller/{id}")
-    public Seller getSellerByCpf(@PathVariable Integer id) {
+    public Seller getByCpf(@PathVariable Integer id) {
         return sellerService.getById(id);
     }
 
     @GetMapping(value = "/api/seller/cpf")
-    public Seller getSellerByCpf(@Param(value = "cpf") String cpf) {
+    public Seller getByCpf(@Param(value = "cpf") String cpf) {
         return sellerService.getByCpf(cpf);
     }
 

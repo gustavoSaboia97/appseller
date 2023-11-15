@@ -27,7 +27,7 @@ public class SellerService {
         sellerRepository.save(sellerWithAddress);
     }
 
-    public Seller createSeller(Seller seller){
+    public Seller create(Seller seller){
         log.error("Creating seller with cpf {}", seller.getCpf());
         Optional<Seller> optionalSeller = sellerRepository.findByCpf(seller.getCpf());
 
@@ -41,7 +41,7 @@ public class SellerService {
         return sellerRepository.save(sellerWithAddress);
     }
 
-    public Seller updateSeller(Seller seller){
+    public Seller update(Seller seller){
         log.error("Updating seller with id {}", seller.getId());
         Optional<Seller> optionalSeller = sellerRepository.findById(seller.getId());
 

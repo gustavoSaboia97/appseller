@@ -1,6 +1,8 @@
 package br.edu.infnet.appSales.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -16,6 +18,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "TB_SELLER")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
