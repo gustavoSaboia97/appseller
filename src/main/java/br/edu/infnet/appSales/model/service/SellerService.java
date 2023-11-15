@@ -22,11 +22,13 @@ public class SellerService {
     private AddressService addressService;
 
     public void upsert(Seller seller){
+        log.error("Creating seller with id {}", seller.getId());
         Seller sellerWithAddress = this.createSellerAddress(seller);
         sellerRepository.save(sellerWithAddress);
     }
 
     public Seller createSeller(Seller seller){
+        log.error("Creating seller with cpf {}", seller.getCpf());
         Optional<Seller> optionalSeller = sellerRepository.findByCpf(seller.getCpf());
 
         if (optionalSeller.isPresent()){
@@ -57,6 +59,8 @@ public class SellerService {
     }
 
     public Seller getByCpf(String cpf) throws NotFoundException {
+        log.error("Creating seller with cpf {}", cpf);
+
         Optional<Seller> optionalSeller = sellerRepository.findByCpf(cpf);
 
         if (optionalSeller.isEmpty()) {
@@ -67,6 +71,7 @@ public class SellerService {
     }
 
     public Seller getById(Integer id) {
+        log.error("Creating seller with id {}", id);
         Optional<Seller> optionalSeller = sellerRepository.findById(id);
 
         if (optionalSeller.isEmpty()) {
@@ -81,6 +86,7 @@ public class SellerService {
     }
 
     public void delete(Integer id){
+        log.error("Creating seller with id {}", id);
         sellerRepository.deleteById(id);
     }
 
