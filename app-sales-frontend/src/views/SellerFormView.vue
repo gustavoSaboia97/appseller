@@ -106,8 +106,6 @@
 			async updateSeller(){
 				let url = import.meta.env.VITE_SALES_API + '/api/seller/' + this.id
 
-				console.log(this.seller)
-
 				let response = await fetch(url, {
 					method: 'PUT',
 					headers: {
