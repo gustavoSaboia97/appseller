@@ -35,7 +35,7 @@ public class Seller {
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private boolean isActive;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "seller_id")
     @JsonIgnore
     private List<Product> products;

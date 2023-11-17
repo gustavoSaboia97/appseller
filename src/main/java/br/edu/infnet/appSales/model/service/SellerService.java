@@ -51,6 +51,8 @@ public class SellerService {
             throw new NotFoundException("Seller");
         }
 
+        seller.setProducts(optionalSeller.get().getProducts());
+
         Seller sellerWithAddress = this.createSellerAddress(seller);
 
         return sellerRepository.save(sellerWithAddress);

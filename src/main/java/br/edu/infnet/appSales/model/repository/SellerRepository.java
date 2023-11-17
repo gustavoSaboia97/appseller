@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface SellerRepository extends CrudRepository<Seller, Integer> {
-
     Optional<Seller> findByCpf(String cpf);
     Iterable<Seller> findAll(Sort sort);
 }
