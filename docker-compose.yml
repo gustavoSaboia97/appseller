@@ -3,7 +3,7 @@ version: '3.7'
 services:
   mysql:
     image: mysql
-    container_name: app-sales-mysql
+    container_name: sales-app-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
     networks:
@@ -12,8 +12,17 @@ services:
       - "3306:3306"
     restart: always
 
+  frontend:
+    container_name: sales-app-frontend
+    hostname: app
+    build:
+      context: ./app-sales-frontend
+    ports:
+      - "8081:8080"
+    restart: always
+
   app:
-    container_name: sales-app
+    container_name: sales-app-backend
     hostname: app
     build:
       context: ./
