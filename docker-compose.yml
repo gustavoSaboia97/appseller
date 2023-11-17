@@ -27,7 +27,7 @@ services:
     build:
       context: ./
     environment:
-      - DB_HOST=app-sales-mysql
+      - DB_HOST=sales-app-mysql
       - DB_USER=root
       - DB_PASSWORD=root
     ports:
