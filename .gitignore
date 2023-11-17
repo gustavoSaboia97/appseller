@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+./app-sales-frontend/node_modules
+./app-sales-frontend/dist
+
 ### STS ###
 .apt_generated
 .classpath
