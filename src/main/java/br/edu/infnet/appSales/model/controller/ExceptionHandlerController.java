@@ -43,7 +43,7 @@ public class ExceptionHandlerController {
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<APIError> genericExceptionHandler(Exception ex) {
-        log.error("Unknown error: {}", ex.getMessage());
+        log.error("Unknown error {}: {}", ex.getClass(), ex.getMessage());
 
         APIError error = APIError.builder()
                 .statusCode(INTERNAL_SERVER_ERROR.value())

@@ -27,12 +27,12 @@ public class ProductService {
     }
 
     public Product create(Product product){
-        log.error("Creating product {}", product.getTitle());
+        log.info("Upsert product {}", product.getTitle());
         return this.productRepository.save(product);
     }
 
     public Product update(Product product){
-        log.error("Updating product with id {}", product.getId());
+        log.info("Updating product with id {}", product.getId());
         Optional<Product> optionalProduct = productRepository.findById(product.getId());
 
         if (optionalProduct.isEmpty()){
@@ -47,7 +47,7 @@ public class ProductService {
     }
 
     public Product getById(Integer id){
-        log.error("Getting product with id {}", id);
+        log.info("Getting product with id {}", id);
         Optional<Product> optionalProduct = this.productRepository.findById(id);
 
         if (optionalProduct.isEmpty()){
@@ -58,7 +58,7 @@ public class ProductService {
     }
 
     public Collection<Product> getBySellerId(Integer sellerId) {
-        log.error("Getting product from seller with id {}", sellerId);
+        log.info("Getting product from seller with id {}", sellerId);
         Seller seller = this.sellerService.getById(sellerId);
         return (Collection<Product>) this.productRepository.findAllBySellerId(seller.getId());
     }

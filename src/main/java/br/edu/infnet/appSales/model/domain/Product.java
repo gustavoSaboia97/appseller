@@ -18,6 +18,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "TB_PRODUCT")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Game.class, name = "GAME"),
+        @JsonSubTypes.Type(value = Book.class, name = "BOOK")
+})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

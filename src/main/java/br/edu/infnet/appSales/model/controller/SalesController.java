@@ -25,7 +25,7 @@ public class SalesController {
     @Autowired
     private SellerService sellerService;
 
-    @GetMapping(value = "/sales-info")
+    @GetMapping(value = "/api/sales-info")
     public SalesInfo getBasicInfo() {
         return SalesInfo.builder()
                 .totalOfSellers(sellerService.getTotal())
