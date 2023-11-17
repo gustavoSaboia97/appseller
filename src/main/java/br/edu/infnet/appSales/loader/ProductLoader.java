@@ -38,7 +38,7 @@ public class ProductLoader implements ApplicationRunner {
             Product product = factory.createProductWithTypeAndValues(productType, values);
 
             try {
-                this.productService.add(product);
+                this.productService.upsert(product);
             }
             catch (ConstraintViolationException exception) {
                 log.error("Could not add the product. err={}", exception.getMessage());

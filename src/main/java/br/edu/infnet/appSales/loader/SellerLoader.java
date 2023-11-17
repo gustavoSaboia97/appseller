@@ -50,7 +50,7 @@ public class SellerLoader implements ApplicationRunner {
                 .build();
 
             try {
-                sellerService.add(seller);
+                sellerService.upsert(seller);
             }
             catch (ConstraintViolationException exception) {
                 log.error("Could not add the seller. err={}", exception.getMessage());

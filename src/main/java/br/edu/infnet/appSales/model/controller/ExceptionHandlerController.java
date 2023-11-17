@@ -1,5 +1,6 @@
 package br.edu.infnet.appSales.model.controller;
 
+import br.edu.infnet.appSales.model.domain.APIError;
 import br.edu.infnet.appSales.model.errors.BaseAPIException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,35 +13,42 @@ import static org.springframework.http.ResponseEntity.status;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
-import java.io.IOException;
 
 @Slf4j
 @RestControllerAdvice
 public class ExceptionHandlerController {
 
     @ExceptionHandler({BaseAPIException.class})
-    public ResponseEntity<Error> knownExceptionHandler(BaseAPIException ex) throws IOException {
+    public ResponseEntity<APIError> knownExceptionHandler(BaseAPIException ex) {
         log.error("Known error:  {}", ex.getMessage());
 
-        Error error = new Error(ex.getMessage());
+        APIError error = APIError.builder()
+                .statusCode(ex.getHttpStatus().value())
+                .message(ex.getMessage())
+                .build();
 
         return status(ex.getHttpStatus()).body(error);
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    public ResponseEntity<Error> parameterExceptionHandler(MethodArgumentNotValidException ex) throws IOException {
+    public ResponseEntity<APIError> parameterExceptionHandler(MethodArgumentNotValidException ex) {
         log.error("Known error:  {}", ex.getMessage());
 
-        Error error = new Error(ex.getMessage());
+        APIError error = APIError.builder()
+                .message(ex.getMessage())
+                .build();
 
         return status(BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<Error> genericExceptionHandler(Exception ex) throws IOException {
-        log.error("Unknown error: {}", ex.getMessage());
+    public ResponseEntity<APIError> genericExceptionHandler(Exception ex) {
+        log.error("Unknown error {}: {}", ex.getClass(), ex.getMessage());
 
-        Error error = new Error(ex.getMessage());
+        APIError error = APIError.builder()
+                .statusCode(INTERNAL_SERVER_ERROR.value())
+                .message(ex.getMessage())
+                .build();
 
         return status(INTERNAL_SERVER_ERROR).body(error);
     }

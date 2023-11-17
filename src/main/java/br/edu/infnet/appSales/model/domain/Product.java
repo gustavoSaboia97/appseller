@@ -1,5 +1,6 @@
 package br.edu.infnet.appSales.model.domain;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -17,6 +18,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "TB_PRODUCT")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Game.class, name = "GAME"),
+        @JsonSubTypes.Type(value = Book.class, name = "BOOK")
+})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +39,8 @@ public class Product {
     private Integer quantity;
     private ProductType type;
     @ManyToOne
-    @JoinColumn(name = "seller_id")
+    @JoinColumn(name = "seller_id", nullable = false)
+    @JsonProperty("sellerId")
+    @JsonIdentityReference(alwaysAsId = true)
     private Seller seller;
 }
